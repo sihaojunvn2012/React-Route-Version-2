@@ -27,7 +27,7 @@ class News extends Component {
                                     Data.map((value, key) => {
                                         return (
  
-                                            <NewItems image={value.Image} title={value.Title} summary={value.Summary} ID={value.id} ></NewItems>
+                                            <NewItems key={key} image={value.Image} title={value.Title} summary={value.Summary} ID={value.id} ></NewItems>
 
                                         );
                                     })

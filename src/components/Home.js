@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 class Home extends Component {
     render() {
         console.log(this.props.match);
+        console.log(this.props.location);
+        
         return (
             <div>
                 <header className="masthead">

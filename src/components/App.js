@@ -11,7 +11,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
   render() {
-    console.log(this.props.match);
+   
     return (
       <Router>
         <div>

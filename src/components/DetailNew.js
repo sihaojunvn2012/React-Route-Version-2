@@ -2,8 +2,25 @@ import React, { Component } from 'react';
 import Data from './Data.json';
 import ContentNew from './ContentNew';
 import RelatedNew from './RelatedNew';
+import {PropTypes} from 'prop-types';
+import {Get_Data_New_To_Store} from '../Actions/Action';
+import {connect } from 'react-redux';
 
 
+
+
+
+const propTypes = {
+
+    Get_Data_New : PropTypes.func.isRequired    
+
+
+} 
+const defaultProps = {
+
+    Get_Data_New : () =>{}
+
+}
 class DetailNew extends Component {
     constructor(props) {
         super(props);
@@ -27,9 +44,12 @@ class DetailNew extends Component {
                 {
                     Data.map((value, key) => {
                         if (value.id === parseInt(this.props.match.params.id)) {
+
+                            var result = value ? value : '';    
+                                this.props.Get_Data_New(result);
                             return (
-                                <ContentNew Id={value.id} title={value.Title} image={value.Image} Content={value.Content} ></ContentNew>
-                            );
+                                <ContentNew key={key} Id={value.id} title={value.Title} image={value.Image} Content={value.Content}/>
+                                    );
                         }
 
                     })
@@ -56,15 +76,12 @@ class DetailNew extends Component {
                                                 count++;
                                                 console.log(count);
                                                 return (
-
-                                                    <RelatedNew ID={value.id} ImageNew={value.Image} TitleNew={value.Title} SummaryNew={value.Summary} ></RelatedNew>                                               )
-
+                                                    <RelatedNew key={key} ID={value.id} ImageNew={value.Image} TitleNew={value.Title} SummaryNew={value.Summary} ></RelatedNew>)
 
                                             }
                                         }
 
                                     })
-
                                 }
                             </div>
                         </div>
@@ -74,5 +91,24 @@ class DetailNew extends Component {
         );
     }
 }
+DetailNew.propTypes = propTypes;
+DetailNew.defaultProps = defaultProps; 
 
-export default DetailNew;
+
+
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        Get_Data_New: (Data_New) => {
+            dispatch(Get_Data_New_To_Store(Data_New))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailNew)
+

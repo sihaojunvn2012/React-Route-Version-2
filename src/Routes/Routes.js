@@ -11,7 +11,7 @@ const routes =[
     {
         path:'/',
         exact:true,
-        main: ()=> <Home/>
+        main: ({match,location})=> <Home match={match} location={location}/>
     },
     {       
         path:'/Contact',

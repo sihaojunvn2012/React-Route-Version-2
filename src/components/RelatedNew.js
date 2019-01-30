@@ -38,7 +38,7 @@ class RelatedNew extends Component {
         return (
             
             <div className="card">
-                <Link to={"/Detail-New/"+this.ChangeToSlug(this.props.TitleNew) +"."+this.props.ID+".html"}><img className="card-img-top img-fluid" src={this.props.ImageNew} alt /></Link>
+                <Link to={"/Detail-New/"+this.ChangeToSlug(this.props.TitleNew) +"."+this.props.ID+".html"}><img className="card-img-top img-fluid" src={this.props.ImageNew} alt="" /></Link>
                 <div className="card-body">
                     <h4 className="card-title">{this.props.TitleNew}</h4>
                     <p className="card-text">{this.props.SummaryNew}</p>
