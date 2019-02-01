@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import '.././css/App.css';
 import Nav from './Nav.js';
-import Home from './Home.js';
 import Footer from './Footer.js';
-import Contact from './Contact';
-import DetailNew from './DetailNew';
-import News from './News';
 import DirectionalURL from '../Router/DirectionalURL';
 import { BrowserRouter as Router } from "react-router-dom";
+import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
@@ -23,5 +20,16 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    
+  }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    dispatch1: () => {
+      dispatch()
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App)

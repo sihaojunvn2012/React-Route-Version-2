@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
 import NewItems from './NewItems';
 import Data from './Data.json';
+import {connect} from 'react-redux';
+import {Get_Data} from '../Actions/Action';
+import {PropTypes} from 'prop-types';
+
+const propTypes = {
+
+    On_Get_Data : PropTypes.func.isRequired,
+
+
+
+} 
+const defaultProps = {
+
+    On_Get_Data : ()=>{}
+
+}
+
 
 
 class News extends Component {
-    render() {
 
+    componentWillMount = () => {
+      
+
+        this.props.On_Get_Data(Data);
+    }
+    
+
+
+
+    render() {
+        console.log(this.props.location);    
         return (
             <div>
                 {/* Header */}
@@ -24,7 +51,7 @@ class News extends Component {
                                 
 
                                 {
-                                    Data.map((value, key) => {
+                                   this.props.Data.map((value, key) => {
                                         return (
  
                                             <NewItems key={key} image={value.Image} title={value.Title} summary={value.Summary} ID={value.id} ></NewItems>
@@ -40,5 +67,20 @@ class News extends Component {
         );
     }
 }
+News.propTypes =propTypes;
+News.defaultProps =defaultProps;  
 
-export default News;
+    const mapStateToProps = (state, ownProps) => {
+        return {
+            Data : state.Data
+        }
+    }
+
+    const mapDispatchToProps = (dispatch, ownProps) => {
+        return {
+            On_Get_Data: (Data) => {
+                dispatch(Get_Data(Data))
+            }
+        }
+    }
+export default connect(mapStateToProps, mapDispatchToProps)(News)

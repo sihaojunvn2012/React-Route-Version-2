@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link} from "react-router-dom";
+import {connect} from 'react-redux';
 
 class NewItems extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class NewItems extends Component {
                  <div className="col-4 mt-3">
                                <div className="card-deck">
                                     <div className="card NewsItems">
-                                        <Link to={"/Detail-New/"+this.ChangeToSlug(this.props.title) +"."+this.props.ID+".html"}><img className="card-img-top img-fluid" src={this.props.image} alt /></Link>
+                                        <Link to={"/Detail-New/"+this.ChangeToSlug(this.props.title) +"."+this.props.ID+".html"}><img className="card-img-top img-fluid" src={this.props.image} alt="" /></Link>
                                         <div className="card-body">
                                             <Link to={"/Detail-New/"+this.ChangeToSlug(this.props.title) +"."+this.props.ID+".html"}><h4 className="card-title title">{this.props.title}</h4></Link>
                                             <p className="card-text">{this.props.summary}</p>
@@ -54,4 +55,16 @@ class NewItems extends Component {
     }
 }
 
-export default NewItems;
+const mapStateToProps = (state, ownProps) => {
+    return {
+      
+    }
+  }
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      dispatch1: () => {
+        dispatch()
+      }
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(NewItems)

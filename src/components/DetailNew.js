@@ -48,8 +48,8 @@ class DetailNew extends Component {
                             var result = value ? value : '';    
                                 this.props.Get_Data_New(result);
                             return (
-                                <ContentNew key={key} Id={value.id} title={value.Title} image={value.Image} Content={value.Content}/>
-                                    );
+                                <ContentNew key={key}/>
+                                );
                         }
 
                     })

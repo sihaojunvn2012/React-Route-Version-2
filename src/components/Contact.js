@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
-
+import { Redirect,Prompt } from "react-router-dom";
+import {connect} from 'react-redux';
 
 
 class Contact extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isChecked: false,
             isRedirect: false,
             Name: "",
             Email: "",
@@ -19,9 +20,26 @@ class Contact extends Component {
     isChange = (event) => {
         const Name = event.target.name;
         const Value = event.target.value;
-        this.setState({
-            [Name]: Value
-        });
+        if(event.target.value.length === 0 ){
+
+            this.setState({
+                isChecked:false,
+                isRedirect: false,
+                Name: "",
+                Email: "",
+                Phone: "",
+                Text: ""
+            })
+        }
+        else {
+
+            this.setState({
+                [Name]: Value,
+                isChecked:true,               
+            });
+        }
+       
+        
     }
     SubmitForm = (event) => {
         event.preventDefault();
@@ -37,16 +55,20 @@ class Contact extends Component {
         Content += "\ Phone Number: " + this.state.Phone;
         Content += "\ Message: " + this.state.Text;
         return Content;
+        
     }
     render() {
+        console.log(this.props.location);
         if (this.state.isRedirect === true) {
             console.log(this.Getvalue());
             return <Redirect to="/" />
         }
-
+        
         return (
             <div>
                 {/* Header */}
+
+                <Prompt when={this.state.isChecked} message= {`Are you want to stay ${this.props.location.pathname} ?`} />    
                 <header className="masthead News">
                     <div className="container h-100">
                         <div className="row h-100">
@@ -108,4 +130,16 @@ class Contact extends Component {
     }
 }
 
-export default Contact;
+const mapStateToProps = (state, ownProps) => {
+    return {
+      
+    }
+  }
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      dispatch1: () => {
+        dispatch()
+      }
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)( Contact)

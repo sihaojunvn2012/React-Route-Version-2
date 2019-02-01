@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
 class Home extends Component {
     render() {
         console.log(this.props.match);
@@ -40,4 +40,18 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state, ownProps) => {
+    return {
+      
+    }
+  }
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      dispatch1: () => {
+        dispatch()
+      }
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Home)
+
+

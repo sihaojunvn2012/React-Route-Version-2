@@ -4,6 +4,7 @@ import Contact from '../components/Contact';
 import News from '../components/News';
 import DetailNew from '../components/DetailNew';
 import NotFound from '../components/Not_Found';
+import Login from '../components/Login';
 
 
 const routes =[
@@ -16,14 +17,14 @@ const routes =[
     {       
         path:'/Contact',
         exact:false,
-        main: ()=> <Contact/>
+        main: ({match,location})=> <Contact match={match} location={location}/>
 
     },
     {
         
         path:'/News',
         exact:false,
-        main: ({match})=> <News match={match}/>
+        main: ({match,location})=> <News match={match} location={location}/>
 
 
     },
@@ -35,11 +36,18 @@ const routes =[
 
     },
     {
+        path:'/Login',
+        exact:false,
+        main: ({match,location} )=><Login  match={match} location={location} />
+
+    },  
+    {
         path:'',
         exact:false,
         main: ({match} )=><NotFound  match={match} />
 
     }
+   
 
 
 ]

@@ -1,29 +1,32 @@
 const menus =[
 
     {
-        name: 'React Router',
+        name: 'HOME',
         to:'/',
-        exact:true
+        exact:true,
+       
 
     },
     {
         name: 'NEW',
         to:'/News',     
-        exact:false
-        
+        exact:false,
+       
 
-    },    
-    {
-        name: 'DETAIL NEW',
-        to:'/Detail-New',
-        exact:false
-
-    },
+    },  
     {
         name: 'CONTACT',
         to:'/Contact',
-        exact:false
+        exact:false,
+        
 
-    }
+    },
+    // {
+    //     name:'LOGIN',
+    //     to:'/Login',
+    //     exact:false,  
+       
+
+    // }
 ]
 export default menus;
